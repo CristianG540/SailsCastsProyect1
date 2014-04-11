@@ -22,31 +22,31 @@ module.exports = {
     'new': function (req, res) {
         res.view();
     },
-  
-    
-    create: function (req, res, next){
+
+
+    create: function (req, res, next) {
         // Crea un usuario con los parametros enviados desde
         // el formulario sign-up --> new.ejs
         console.log(req.params.all()); // Esto me trae todos los paramatros se parece mucho al req.body pero no se cual es la diferencia
         var dataForm = req.body;
-      
-        User.create(dataForm).done(function(err, user){
-          // Error handling
-          if (err) {
-            console.log(err);
-            return next(err);
-          }
-          
-          res.json(user);
-          
-        });
-        
-    },
-  /**
-   * Overrides for the settings in `config/controllers.js`
-   * (specific to UserController)
-   */
-  _config: {}
 
+        User.create(dataForm).done(function (err, user) {
+            // Error handling
+            if (err) {
+                console.log(err);
+                req.session.flash = {error: err};
+                return res.redirect('/user/new');
+            }
+
+            res.json(user);
+
+        });
+
+    },
+    /**
+     * Overrides for the settings in `config/controllers.js`
+     * (specific to UserController)
+     */
+    _config: {}
 
 };

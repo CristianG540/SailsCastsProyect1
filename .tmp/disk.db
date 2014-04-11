@@ -22,6 +22,23 @@
         "createdAt": "2014-04-11T00:42:55.195Z",
         "updatedAt": "2014-04-11T00:42:55.195Z",
         "id": 2
+      },
+      {
+        "nombre": "Cristian",
+        "titulo": "sdfghjk",
+        "email": "asdf@kjhgf.com",
+        "createdAt": "2014-04-11T18:08:32.949Z",
+        "updatedAt": "2014-04-11T18:08:32.949Z",
+        "id": 3
+      },
+      {
+        "nombre": "Camilo",
+        "titulo": "Desarrollador",
+        "email": "fsdfdsf@gg.com",
+        "encryptedPassword": "1234",
+        "createdAt": "2014-04-11T19:27:27.612Z",
+        "updatedAt": "2014-04-11T19:27:27.612Z",
+        "id": 4
       }
     ]
   },
@@ -59,7 +76,7 @@
   },
   "counters": {
     "user": {
-      "id": 2
+      "id": 4
     }
   }
 }

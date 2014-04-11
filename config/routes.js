@@ -35,6 +35,15 @@ module.exports.routes = {
   '/': {
     view: 'static/index'
   }
+  
+  /* 
+  * Esta es una forma de routear las uri con sails, pasas la uri y se le asigna el controlador y la accion que la uri realizara 
+  
+  ,'/user/new': {
+    controller: 'UserController',
+    action: 'new'
+  }
+  */
 
   /*
   // But what if you want your home page to display

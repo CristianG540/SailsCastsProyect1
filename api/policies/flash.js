@@ -1,3 +1,4 @@
+//policies/flash.js
 module.exports = function(req, res, next) {
     res.locals.flash = {};
     if(!req.session.flash){ return next(); }

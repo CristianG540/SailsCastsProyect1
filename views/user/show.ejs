@@ -1,0 +1,10 @@
+<div class="container">
+    <h1><%- usuario.nombre %></h1>
+    <h3><%- usuario.titulo %></h3>
+    <hr>
+    <h3>Contacto: <%- usuario.email %> </h3>
+
+    <a href="/user/edit/<%- usuario.id %>" class="btn btn-medium btn-primary">Editar</a>
+    <a id="btnDeleteUsr" href="<%- usuario.id %>" class="btn btn-danger">Eliminar</a>
+
+</div>

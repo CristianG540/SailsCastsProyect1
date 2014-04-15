@@ -23,6 +23,24 @@ module.exports = {
         res.view();
     },
 
+    //'rambo': function (req, res) {
+    //    console.log("estoy en un controlador");
+    //},
+
+    'show': function (req, res, next) {
+        User.findOne(req.params.id).done(function(err, user){
+            if(err){ return next(err); }
+            if(!user){
+                console.log("No se encontraron usuarios con el ID: "+req.params.id);
+                return next();
+            }
+
+            res.view({
+                usuario: user
+            });
+
+        });
+    },
 
     create: function (req, res, next) {
         // Crea un usuario con los parametros enviados desde
@@ -31,14 +49,20 @@ module.exports = {
         var dataForm = req.body;
 
         User.create(dataForm).done(function (err, user) {
-            // Error handling
+            // manejo de errores
             if (err) {
                 console.log(err);
-                req.session.flash = {error: err};
+                req.session.flash = {
+                    error: err
+                };
+                // si hay un error redireciona de nuevo la pagina de inicio de sesion
                 return res.redirect('/user/new');
             }
+            //Despues de crear correctamente un usario
+            //redireciona a la accion "show" que es la qme muestra los detalles del usuario
+            //desde ep1-6 //res.json(user);
 
-            res.json(user);
+            res.redirect('/user/show/'+user.id);
 
         });
 

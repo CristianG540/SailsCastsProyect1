@@ -14,17 +14,6 @@
       },
       {
         "nombre": "Cristian",
-        "titulo": "Desarrollador",
-        "email": "cristiangonzalez@ingeniosolidosdsd.com",
-        "password": "1234",
-        "confirmacion": "1234",
-        "_csrf": "sgKLYPxpXQvQfIX4DXDCb74dmeEMTkXfuVYOg=",
-        "createdAt": "2014-04-11T00:42:55.195Z",
-        "updatedAt": "2014-04-11T00:42:55.195Z",
-        "id": 2
-      },
-      {
-        "nombre": "Cristian",
         "titulo": "sdfghjk",
         "email": "asdf@kjhgf.com",
         "createdAt": "2014-04-11T18:08:32.949Z",
@@ -39,6 +28,14 @@
         "createdAt": "2014-04-11T19:27:27.612Z",
         "updatedAt": "2014-04-11T19:27:27.612Z",
         "id": 4
+      },
+      {
+        "nombre": "Cristian Ramiro",
+        "titulo": "Desarrollador",
+        "email": "crishsdgsdfhg@dfhds.com",
+        "createdAt": "2014-04-14T22:25:05.696Z",
+        "updatedAt": "2014-04-14T22:25:05.696Z",
+        "id": 5
       }
     ]
   },
@@ -76,7 +73,7 @@
   },
   "counters": {
     "user": {
-      "id": 4
+      "id": 5
     }
   }
 }

@@ -1,4 +1,4 @@
-<form action="/user/create" method="post" class="form-signin">
+<form action="/user/create" method="post" class="form-signin" >
     <h2 class="form-signin-heading">Crea una cuenta</h2>
 
     <% if(flash && flash.error) { %>
@@ -9,19 +9,19 @@
         </ul>
     <% }%>
     <div class="control-group">
-        <input type="text" class="form-control" placeholder="Tu nombre" name="nombre">
+        <input type="text" class="form-control" placeholder="Tu nombre" name="nombre" id="nombre">
     </div>
     <div class="control-group">
-        <input type="text" class="form-control" placeholder="Tu titulo" name="titulo">
+        <input type="text" class="form-control" placeholder="Tu titulo" name="titulo" id="titulo">
     </div>
     <div class="control-group">
-        <input type="text" class="form-control" placeholder="Direccion email" name="email">
+        <input type="text" class="form-control" placeholder="Direccion email" name="email" id="email">
     </div>
     <div class="control-group">
-        <input type="text" class="form-control" placeholder="password" name="password">
+        <input type="text" class="form-control" placeholder="password" name="password" id="password">
     </div>
     <div class="control-group">
-        <input type="text" class="form-control" placeholder="confirma tu password" name="confirmacion">
+        <input type="text" class="form-control" placeholder="confirma tu password" id="confirmacion" name="confirmacion">
         <br/>
     </div>
 

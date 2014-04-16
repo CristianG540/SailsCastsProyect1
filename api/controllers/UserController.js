@@ -27,6 +27,7 @@ module.exports = {
     //    console.log("estoy en un controlador");
     //},
 
+    // Crea la vista de perfil ( /views/show.ejs)
     'show': function (req, res, next) {
         User.findOne(req.params.id).done(function(err, user){
             if(err){ return next(err); }
@@ -39,6 +40,34 @@ module.exports = {
                 usuario: user
             });
 
+        });
+    },
+
+    // Crea la vista para editar ( /views/edit.ejs)
+    'edit': function (req, res, next) {
+        //Busca el usuario con el id que se le envio por params
+        User.findOne(req.params.id).done(function(err, user){
+            if(err){ return next(err); }
+            if(!user){
+                console.log("No se encontraron usuarios con el ID: "+req.params.id);
+                return next();
+            }
+
+            res.view({
+                usuario: user
+            });
+
+        });
+    },
+
+    'index': function (req, res, next) {
+        //Consigue un array de todos los usuarios en la Coleccione User(Tabla User)
+        User.find().done(function(err, users){
+            if (err) { return next(err); }
+            // Envia el array de usuarios a la pagina /views/index.ejs
+            res.view({
+                usuarios: users
+            });
         });
     },
 
@@ -66,6 +95,22 @@ module.exports = {
 
         });
 
+    },
+
+    // procesa la info de la vista editar
+    update: function (req, res, next) {
+        var dataForm = req.body;
+        var userId = req.params.id;
+        User.update(userId, dataForm, function(err, user){
+            if(err){
+                console.log("Error actualizando el id: " + userId);
+                console.log(err);
+                console.log("Error actualizando el id: " + userId);
+                return res.redirect('/user/edit/' + userId);
+            }
+
+            res.redirect('/user/show/' + userId);
+        });
     },
     /**
      * Overrides for the settings in `config/controllers.js`

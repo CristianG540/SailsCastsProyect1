@@ -2,14 +2,14 @@
   "data": {
     "user": [
       {
-        "nombre": "Cristian",
+        "nombre": "Cristian Valencia",
         "titulo": "Desarrollador",
-        "email": "cristiangonzalez@ingeniosolido.com",
+        "email": "cristiaez@ingeniosolido.com",
         "password": "1234",
         "confirmacion": "1234",
         "_csrf": "BwKoiyzBTWqNQqYuO8e9QYENVQDceFGPKLUGs=",
         "createdAt": "2014-04-11T00:30:23.600Z",
-        "updatedAt": "2014-04-11T00:30:23.600Z",
+        "updatedAt": "2014-04-16T00:55:43.981Z",
         "id": 1
       },
       {
@@ -28,14 +28,6 @@
         "createdAt": "2014-04-11T19:27:27.612Z",
         "updatedAt": "2014-04-11T19:27:27.612Z",
         "id": 4
-      },
-      {
-        "nombre": "Cristian Ramiro",
-        "titulo": "Desarrollador",
-        "email": "crishsdgsdfhg@dfhds.com",
-        "createdAt": "2014-04-14T22:25:05.696Z",
-        "updatedAt": "2014-04-14T22:25:05.696Z",
-        "id": 5
       }
     ]
   },

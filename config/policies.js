@@ -17,7 +17,11 @@ module.exports.policies = {
   // Default policy for all controllers and actions
   // (`true` allows public access) 
   //'*': true
-  '*': ['flash','politicaPrueba']
+  '*': 'flash',
+
+  UserController: {
+    'show': ['politicaPrueba', 'flash']  // Coloco de nuevo la politica de flash por de lo contrario solo lanzaria la de politica prueba
+  }
   /*
 	// Here's an example of adding some policies to a controller
 	RabbitController: {

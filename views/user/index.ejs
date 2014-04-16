@@ -1,0 +1,25 @@
+<div class="container">
+	<h3>Usuarios</h3>
+	<table class="table">
+		<tr>
+			<th>ID</th>
+			<th>Nombre</th>
+			<th>Titulo</th>
+			<th>Email</th>
+			<th></th>
+			<th></th>
+			<th></th>
+		</tr>
+        <% _.each(usuarios, function(usuario){ %>
+		<tr>
+			<td><%= usuario.id %></td>
+			<td><%= usuario.nombre %></td>
+			<td><%= usuario.titulo %></td>
+			<td><%= usuario.email %></td>
+			<td><a href="/user/show/<%= usuario.id %>" class="btn btn-sm btn-primary">Mostrar</a></td>
+			<td><a href="/user/edit/<%= usuario.id %>" class="btn btn-sm btn-warning">Editar</a></td>
+			<td><a href="/user/destroy/<%= usuario.id %>" class="btn btn-sm btn-danger">Eliminar</a></td>
+		</tr>
+        <% }); %>
+	</table>
+</div>

@@ -18,7 +18,13 @@
 			<td><%= usuario.email %></td>
 			<td><a href="/user/show/<%= usuario.id %>" class="btn btn-sm btn-primary">Mostrar</a></td>
 			<td><a href="/user/edit/<%= usuario.id %>" class="btn btn-sm btn-warning">Editar</a></td>
-			<td><a href="/user/destroy/<%= usuario.id %>" class="btn btn-sm btn-danger">Eliminar</a></td>
+            <td>
+                <form action="/user/destroy/<%= usuario.id %>" method="POST">
+                    <input value="delete" name="_method" id="_method" type="hidden" />
+                    <input type="hidden" name="_csrf" value="<%= _csrf %>" />
+                    <input type="submit" class="btn btn-sm btn-danger" value="Eliminar"/>
+                </form>
+            </td>
 		</tr>
         <% }); %>
 	</table>

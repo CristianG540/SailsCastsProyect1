@@ -112,6 +112,20 @@ module.exports = {
             res.redirect('/user/show/' + userId);
         });
     },
+
+    destroy: function (req, res, next) {
+        var userId = req.params.id;
+        User.findOne(userId).done(function(err, user){
+            if(err){ return next(err); }
+            if(!user){ return next('El usuario no existe.'); }
+
+            User.destroy(userId).done(function(err){
+                if(err){ return next(err); }
+                console.log("El usuario de id: "+userId+" Se elimino correctamente");
+            });
+            res.redirect('/user');
+        });
+    },
     /**
      * Overrides for the settings in `config/controllers.js`
      * (specific to UserController)

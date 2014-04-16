@@ -2,17 +2,6 @@
   "data": {
     "user": [
       {
-        "nombre": "Cristian Valencia",
-        "titulo": "Desarrollador",
-        "email": "cristiaez@ingeniosolido.com",
-        "password": "1234",
-        "confirmacion": "1234",
-        "_csrf": "BwKoiyzBTWqNQqYuO8e9QYENVQDceFGPKLUGs=",
-        "createdAt": "2014-04-11T00:30:23.600Z",
-        "updatedAt": "2014-04-16T00:55:43.981Z",
-        "id": 1
-      },
-      {
         "nombre": "Cristian",
         "titulo": "sdfghjk",
         "email": "asdf@kjhgf.com",
@@ -28,6 +17,14 @@
         "createdAt": "2014-04-11T19:27:27.612Z",
         "updatedAt": "2014-04-11T19:27:27.612Z",
         "id": 4
+      },
+      {
+        "nombre": "Rambo",
+        "titulo": "Soldado",
+        "email": "rambokill@killmail.com",
+        "createdAt": "2014-04-16T13:56:54.284Z",
+        "updatedAt": "2014-04-16T13:56:54.284Z",
+        "id": 6
       }
     ]
   },
@@ -65,7 +62,7 @@
   },
   "counters": {
     "user": {
-      "id": 5
+      "id": 6
     }
   }
 }

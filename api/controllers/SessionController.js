@@ -19,15 +19,27 @@ module.exports = {
 
 
     'new': function(req, res){
-
-        var oldDateObj = new Date();
-        var newDateObj = new Date(oldDateObj.getTime() + 60000);
-        req.session.cookie.expires = newDateObj;
-        req.session.autenticado = true;
         console.log(req.session);
         res.view('session/new');
     },
+    create: function(req, res){
+        var dataForm = req.body;
 
+        if(!dataForm.email || !dataForm.password){
+            var emailPasswordRequiredError = [{nombre: 'emailPasswordRequiredError', mensaje: 'Debes ingresar un email y un password'}];
+
+            req.session.flash = {
+                error: emailPasswordRequiredError
+            };
+
+            res.redirect('/session/new');
+            return;
+        }
+
+        /*User.findOneByEmail(dataForm.email).done(function(err, user){
+
+        });   */
+    },
     /**
      * Overrides for the settings in `config/controllers.js`
      * (specific to SessionController)

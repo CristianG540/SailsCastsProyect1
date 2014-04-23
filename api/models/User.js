@@ -31,21 +31,21 @@ module.exports = {
         encryptedPassword: {
             type: 'string'
         }
-//        ,toJSON: function () {
-//            /*The toObject() method will return the currently set model values only, without any of the instance methods attached. Useful if you want to change or remove values before sending to the client.*/
-//            var obj = this.toObject();
-//            console.log('antes de hacer toObect');
-//            console.log(this.toObject());
-//            console.log('antes de hacer toObect');
-//
-//
-//            delete obj.password;
-//            delete obj.confirmacion;
-//            delete obj.encryptedPassword;
-//            delete obj._csrf;
-//
-//            return obj;
-//        }
+        ,toJSON: function () {
+            /*The toObject() method will return the currently set model values only, without any of the instance methods attached. Useful if you want to change or remove values before sending to the client.*/
+            var obj = this.toObject();
+            console.log('antes de hacer toObect');
+            console.log(this.toObject());
+            console.log('antes de hacer toObect');
+
+
+            delete obj.password;
+            delete obj.confirmacion;
+            delete obj.encryptedPassword;
+            delete obj._csrf;
+
+            return obj;
+        }
 
     }
 

@@ -30,7 +30,7 @@ module.exports = {
     // Crea la vista de perfil ( /views/show.ejs)
     'show': function (req, res, next) {
         User.findOne(req.params.id).done(function(err, user){
-            if(err){ return next(err); }
+            if(err){ return res.serverError(err); }
             if(!user){
                 console.log("No se encontraron usuarios con el ID: "+req.params.id);
                 return next();
@@ -47,7 +47,7 @@ module.exports = {
     'edit': function (req, res, next) {
         //Busca el usuario con el id que se le envio por params
         User.findOne(req.params.id).done(function(err, user){
-            if(err){ return next(err); }
+            if(err){ return res.serverError(err); }
             if(!user){
                 console.log("No se encontraron usuarios con el ID: "+req.params.id);
                 return next();
@@ -61,9 +61,13 @@ module.exports = {
     },
 
     'index': function (req, res, next) {
+
+        console.log(new Date());
+        console.log(req.session.autenticado);
+
         //Consigue un array de todos los usuarios en la Coleccione User(Tabla User)
         User.find().done(function(err, users){
-            if (err) { return next(err); }
+            if (err) { return res.serverError(err); }
             // Envia el array de usuarios a la pagina /views/index.ejs
             res.view({
                 usuarios: users
@@ -116,11 +120,11 @@ module.exports = {
     destroy: function (req, res, next) {
         var userId = req.params.id;
         User.findOne(userId).done(function(err, user){
-            if(err){ return next(err); }
+            if(err){ return res.serverError(err); }
             if(!user){ return next('El usuario no existe.'); }
 
             User.destroy(userId).done(function(err){
-                if(err){ return next(err); }
+                if(err){ return res.serverError(err); }
                 console.log("El usuario de id: "+userId+" Se elimino correctamente");
             });
             res.redirect('/user');

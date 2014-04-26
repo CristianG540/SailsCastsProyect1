@@ -18,7 +18,7 @@
 module.exports = {
 
 
-
+    // me lleva a la vista para crear un nuevo usuario
     'new': function (req, res) {
         res.view();
     },
@@ -91,6 +91,11 @@ module.exports = {
                 // si hay un error redireciona de nuevo la pagina de inicio de sesion
                 return res.redirect('/user/new');
             }
+
+            //Logueo del usuario
+            req.session.autenticado = true;
+            req.session.Usuario = user;
+
             //Despues de crear correctamente un usario
             //redireciona a la accion "show" que es la qme muestra los detalles del usuario
             //desde ep1-6 //res.json(user);

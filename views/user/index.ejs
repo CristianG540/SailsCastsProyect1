@@ -16,6 +16,11 @@
 			<td><%= usuario.nombre %></td>
 			<td><%= usuario.titulo %></td>
 			<td><%= usuario.email %></td>
+            <%if(usuario.admin){%>
+                <td><img src="/images/admin.png" alt="admin"></td>
+            <%}else{%>
+                <td><img src="/images/pawn.png" alt="user"></td>
+            <%}%>
 			<td><a href="/user/show/<%= usuario.id %>" class="btn btn-sm btn-primary">Mostrar</a></td>
 			<td><a href="/user/edit/<%= usuario.id %>" class="btn btn-sm btn-warning">Editar</a></td>
             <td>

@@ -20,11 +20,11 @@ var bcrypt = require('bcrypt');
 module.exports = {
 
 
-    'new': function (req, res) {
+    'new': function (req, res, next) {
         console.log(req.session);
         res.view('session/new');
     },
-    create: function (req, res) {
+    create: function (req, res, next) {
         var dataForm = req.body;
 
         if (!dataForm.email || !dataForm.password) {
@@ -87,11 +87,25 @@ module.exports = {
                 req.session.autenticado = true;
                 req.session.Usuario = user;
 
+                // si el usuario es administrador lo redirecciono a la lista de usuarios ( /views/user/index.ejs)
+                // esto es usado en conjunto con config/policies.js
+                if(req.session.Usuario.admin){
+                    res.redirect('/user');
+                    return;
+                }
+
                 //redirecciono a la pagina de perfil del usuario ( /views/user/show.ejs)
                 res.redirect('/user/show/' + user.id);
             });
 
         });
+    },
+    destroy: function(req, res, next){
+        // Termino la sesion (log out)
+        req.session.destroy();
+
+        // Redirecciono al la pagina de inicio de sesion
+        res.redirect('/session/new');
     },
     /**
      * Overrides for the settings in `config/controllers.js`

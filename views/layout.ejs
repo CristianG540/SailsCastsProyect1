@@ -38,7 +38,42 @@
 
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
-            <a href="/" class="navbar-brand">activityOverlord</a>
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/"> activityOverlord</a>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <% if(session.autenticado){ %>
+                    <li class="active"><a href="/user/show/<%= session.Usuario.id %>"><%= session.Usuario.nombre %></a></li>
+                    <%if(session.Usuario.admin){%>
+                    <li><a href="/user">Administrar usuarios</a></li>
+                    <li><a href="#">Placeholder2</a></li>
+                    <%}%>
+                    <%}%>
+                </ul>
+                <div class="navbar-right">
+                    <% if(session.autenticado){ %>
+                    <a href="/session/destroy" class="btn btn-default navbar-btn navbar-right">Cerrar sesion</a>
+                    <% } %>
+                </div>
+                <% if(!session.autenticado){ %>
+                <form action="/session/create" method="POST" class="navbar-form navbar-right">
+                    <div class="form-group">
+                        <input type="text" name="email" id="email" placeholder="email" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <input type="password" name="password" class="form-control">
+                    </div>
+                    <button type="submit" class="btn btn-sucess">Ingresar</button>
+                    <input type="hidden" name="_csrf" value="<%= _csrf %>">
+                </form>
+                <%}%>
+            </div>
         </div>
     </div>
 

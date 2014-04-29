@@ -46,6 +46,19 @@ module.exports = {
         }
 
     },
+    beforeValidation:  function(values, next){
+        console.log('beforeValidation');
+        console.log(values);
+        console.log('beforeValidation');
+        if (typeof values.admin !== 'undefined') {
+            if(values.admin === 'unchecked'){
+                values.admin = false;
+            }else if (values.admin[1] === 'on') {
+                values.admin = true;
+            }
+        }
+        next();
+    },
     beforeCreate: function (values, next) {
         // esto chekea que el password y la confirmacion sean iguales antes de crear el registro
         if(!values.password || values.password !== values.confirmacion){

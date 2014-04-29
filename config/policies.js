@@ -22,9 +22,9 @@ module.exports.policies = {
     UserController: {
         'new' : 'flash',
         'create': 'flash',
-        'show': ['politicaPrueba', 'verifPermisosUsuario'], // Coloco de nuevo la politica de isAuthenticated por de lo contrario solo lanzaria la de politica prueba
-        'edit': 'verifPermisosUsuario',
-        'update': 'verifPermisosUsuario',
+        'show': ['politicaPrueba','isAuthenticated', 'verifPermisosUsuario'], // Coloco de nuevo la politica de isAuthenticated por de lo contrario solo lanzaria la de politica prueba
+        'edit': ['isAuthenticated' ,'verifPermisosUsuario'],
+        'update': ['isAuthenticated' ,'verifPermisosUsuario'],
         '*'   : 'isAuthenticatedAdmin'
     }
     /*

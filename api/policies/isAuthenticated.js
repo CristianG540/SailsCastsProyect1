@@ -11,17 +11,22 @@ module.exports = function (req, res, next) {
 
     // Si el usuario esta autenticado, procede a la siguiente politica,
     // o si esta es la ultima politica, procede a el controlador
-    if (req.session.autenticado) {
-        return next();
-    }else{ // Si el usuario no esta autenticado
-        var noAutenticadoError = [
-            {
-                nombre: 'noAutenticadoError',
-                mensaje: 'Usted debe estar logueado'
-            }
-        ];
+
+    try{
+        if(!req.session.autenticado){
+            var noAutenticadoError = [
+                {
+                    nombre: 'noAutenticadoError',
+                    mensaje: 'Usted debe estar logueado'
+                }
+            ];
+            throw noAutenticadoError;
+        }else{
+            return next();
+        }
+    }catch(err){
         req.session.flash = {
-            error: noAutenticadoError
+            error: err
         };
 
         res.redirect('/session/new');

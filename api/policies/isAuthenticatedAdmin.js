@@ -11,15 +11,21 @@ module.exports = function (req, res, next) {
 
     // Si el usuario esta autenticado, procede a la siguiente politica,
     // o si esta es la ultima politica, procede a el controlador
-    if (req.session.autenticado && req.session.Usuario.admin) {
-        return next();
-    }else{ // Si el usuario no esta autenticado
+
+    try{
+        if (req.session.autenticado && req.session.Usuario.admin) {
+            return next();
+        }
         var noAdminError = [
             {
                 nombre: 'noAdminError',
                 mensaje: 'Usted debe estar logueado como administrador'
             }
         ];
+
+        throw noAdminError;
+
+    }catch(err){
         req.session.flash = {
             error: noAdminError
         };

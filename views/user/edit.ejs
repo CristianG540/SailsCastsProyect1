@@ -3,6 +3,15 @@
 	<input value="<%= usuario.nombre %>" name="nombre" id="nombre" type="text" class="form-control" />
 	<input value="<%= usuario.titulo %>" name="titulo" id="titulo" type="text" class="form-control" />
 	<input value="<%= usuario.email %>" name="email" id="email" type="text" class="form-control" />
-	<input value="Actualizar" name="updateBtn" id="updateBtn" type="submit" class="btn btn-lg btn-primary btn-block" />
+	<% if (session.autenticado && session.Usuario.admin){%>
+        <%if(usuario.admin){%>
+            <input type="hidden" name="admin" value="unchecked">
+            <label class="checkbox"><input type="checkbox" name="admin" checked> Admin</label>
+        <%}else{%>
+            <input type="hidden" name="admin" value="unchecked">
+            <label class="checkbox"><input type="checkbox" name="admin"> Admin</label>
+        <%}%>
+    <%}%>
+    <input value="Actualizar" name="updateBtn" id="updateBtn" type="submit" class="btn btn-lg btn-primary btn-block" />
 	<input value="<%= _csrf %>" name="_csrf" id="_csrf" type="hidden" />
 </form>

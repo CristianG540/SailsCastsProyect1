@@ -1,6 +1,9 @@
 <div class="container">
     <h1><%= usuario.nombre %></h1>
     <% if(usuario.admin){ %>
+        <img src="/images/admin.png" alt="admin"> Admin
+    <%} else {%>
+        <img src="/images/pawn.png" alt="User"> Usuario
     <%}%>
     <h3><%= usuario.titulo %></h3>
     <hr>

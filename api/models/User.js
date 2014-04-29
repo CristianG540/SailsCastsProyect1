@@ -4,6 +4,8 @@
  * @module      :: Model
  * @description :: A short summary of how this model works and what it represents.
  * @docs		:: http://sailsjs.org/#!documentation/models
+ * @docs        :: Mejor documentacion aqui https://github.com/balderdashy/waterline
+ * @docs        :: Mas documentacion por estos lares https://github.com/balderdashy/waterline-docs/blob/master/models.md
  */
 var bcrypt = require('bcrypt');
 module.exports = {
@@ -46,7 +48,7 @@ module.exports = {
         }
 
     },
-    beforeValidation:  function(values, next){
+    beforeUpdate:  function(values, next){
         console.log('beforeValidation');
         console.log(values);
         console.log('beforeValidation');

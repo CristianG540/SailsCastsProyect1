@@ -113,7 +113,7 @@ module.exports = {
         User.update(userId, dataForm, function(err, user){
             if(err){
                 console.log("Error actualizando el id: " + userId);
-                console.log(err);
+                console.log(JSON.stringify(err));
                 console.log("Error actualizando el id: " + userId);
                 return res.redirect('/user/edit/' + userId);
             }

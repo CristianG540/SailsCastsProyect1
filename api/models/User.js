@@ -30,14 +30,18 @@ module.exports = {
             required: true,
             unique: true
         },
+        online: {
+            type: 'boolean',
+            defaultsTo: false
+        },
         admin: {
             type: 'boolean',
             defaultsTo: false
         },
         encryptedPassword: {
             type: 'string'
-        }
-        ,toJSON: function () {
+        },
+        toJSON: function () {
             /*The toObject() method will return the currently set model values only, without any of the instance methods attached. Useful if you want to change or remove values before sending to the client.*/
             var obj = this.toObject();
             delete obj.password;

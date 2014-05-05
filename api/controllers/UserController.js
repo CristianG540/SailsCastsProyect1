@@ -92,16 +92,24 @@ module.exports = {
                 return res.redirect('/user/new');
             }
 
-            //Logueo del usuario
-            req.session.autenticado = true;
-            req.session.Usuario = user;
+            //cambia el estatus de online
+            user.online = true;
+            user.save(function(err, user){
+                if(err){
+                    console.log("Error al modificar el atributo online");
+                    return res.serverError(err);
+                };
 
-            //Despues de crear correctamente un usario
-            //redireciona a la accion "show" que es la qme muestra los detalles del usuario
-            //desde ep1-6 //res.json(user);
+                //Logueo del usuario
+                req.session.autenticado = true;
+                req.session.Usuario = user;
 
-            res.redirect('/user/show/'+user.id);
+                //Despues de crear correctamente un usario
+                //redireciona a la accion "show" que es la qme muestra los detalles del usuario
+                //desde ep1-6 //res.json(user);
 
+                res.redirect('/user/show/'+user.id);
+            });
         });
 
     },

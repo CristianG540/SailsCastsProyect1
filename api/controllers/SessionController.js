@@ -83,29 +83,57 @@ module.exports = {
                     return;
                 }
 
-                //Logueo del usuario
-                req.session.autenticado = true;
-                req.session.Usuario = user;
+                //cambia el estatus de online
+                user.online = true;
+                user.save(function(err, user){
+                    if(err){
+                        console.log("Error al establecer la propiedad online del usurio");
+                        return res.serverError(err);
+                    }
+                    //Logueo del usuario
+                    req.session.autenticado = true;
+                    req.session.Usuario = user;
 
-                // si el usuario es administrador lo redirecciono a la lista de usuarios ( /views/user/index.ejs)
-                // esto es usado en conjunto con config/policies.js
-                if(req.session.Usuario.admin){
-                    res.redirect('/user');
-                    return;
-                }
+                    // si el usuario es administrador lo redirecciono a la lista de usuarios ( /views/user/index.ejs)
+                    // esto es usado en conjunto con config/policies.js
+                    if(req.session.Usuario.admin){
+                        res.redirect('/user');
+                        return;
+                    }
 
-                //redirecciono a la pagina de perfil del usuario ( /views/user/show.ejs)
-                res.redirect('/user/show/' + user.id);
+                    //redirecciono a la pagina de perfil del usuario ( /views/user/show.ejs)
+                    res.redirect('/user/show/' + user.id);
+                });
+
             });
 
         });
     },
     destroy: function(req, res, next){
-        // Termino la sesion (log out)
-        req.session.destroy();
 
-        // Redirecciono al la pagina de inicio de sesion
-        res.redirect('/session/new');
+        User.findOne(req.session.Usuario.id).done(function(err,user){
+            if(err){
+                console.log("Error al buscar un usuario para pasar el estado online a false");
+                return res.serverError(err);
+            }
+
+            // El usuario cierra secion entonces el atributo online cambia false
+            User.update(user.id, { online : false }, function(err, user){
+                if(err){
+                    console.log("Error al cambiar la propiedad logout a false");
+                    return res.serverError(err);
+                }
+
+                // Termino la sesion (log out)
+                req.session.destroy();
+
+                // Redirecciono al la pagina de inicio de sesion
+                res.redirect('/session/new');
+            });
+
+        });
+
+
     },
     /**
      * Overrides for the settings in `config/controllers.js`

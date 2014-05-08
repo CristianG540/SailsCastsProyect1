@@ -79,7 +79,13 @@ module.exports = {
         // Crea un usuario con los parametros enviados desde
         // el formulario sign-up --> new.ejs
         console.log(req.params.all()); // Esto me trae todos los paramatros se parece mucho al req.body pero no se cual es la diferencia
-        var dataForm = req.body;
+        var dataForm  = {
+            'nombre'       : req.body.nombre,
+            'titulo'       : req.body.titulo,
+            'email'        : req.body.email,
+            'password'     : req.body.password,
+            'confirmacion' : req.body.confirmacion
+        };
 
         User.create(dataForm).done(function (err, user) {
             // manejo de errores
@@ -98,7 +104,7 @@ module.exports = {
                 if(err){
                     console.log("Error al modificar el atributo online");
                     return res.serverError(err);
-                };
+                }
 
                 //Logueo del usuario
                 req.session.autenticado = true;
@@ -116,8 +122,24 @@ module.exports = {
 
     // procesa la info de la vista editar
     update: function (req, res, next) {
-        var dataForm = req.body;
+        var dataForm = {};
         var userId = req.params.id;
+
+        if(req.session.Usuario.admin){
+            dataForm = {
+                'nombre' : req.body.nombre,
+                'titulo' : req.body.titulo,
+                'email'  : req.body.email,
+                'admin'  : req.body.admin
+            };
+        }else{
+            dataForm = {
+                'nombre' : req.body.nombre,
+                'titulo' : req.body.titulo,
+                'email'  : req.body.email
+            };
+        }
+
         User.update(userId, dataForm, function(err, user){
             if(err){
                 console.log("Error actualizando el id: " + userId);

@@ -68,6 +68,9 @@ module.exports = {
     beforeCreate: function (values, next) {
         // esto chekea que el password y la confirmacion sean iguales antes de crear el registro
         if(!values.password || values.password !== values.confirmacion){
+            console.log('values');
+            console.log(values);
+            console.log('values');
             return next({error: ["El password no coincide con la confirmacion."]});
         }
         bcrypt.hash(values.password, 10, function(err, hash){

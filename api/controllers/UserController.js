@@ -165,6 +165,21 @@ module.exports = {
             res.redirect('/user');
         });
     },
+
+    'subscribe': function(req, res){
+
+        User.find(function(err,users){
+            if(err){ return res.serverError(err); }
+
+            // Subscribo este socket a el User model classroom
+            User.subscribe(req.socket);
+
+            // Subscribo este socket a el user instance rooms
+            User.subscribe(req.socket, users);
+
+        });
+
+    }
     /**
      * Overrides for the settings in `config/controllers.js`
      * (specific to UserController)

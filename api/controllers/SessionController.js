@@ -94,6 +94,12 @@ module.exports = {
                     req.session.autenticado = true;
                     req.session.Usuario = user;
 
+                    // Informa a otros sockets (e.g. sockets conectados que estan subscritos) que este usuario esta logueado
+                    User.publishUpdate(user.id, {
+                        loggedIn: true,
+                        id: user.id
+                    });
+
                     // si el usuario es administrador lo redirecciono a la lista de usuarios ( /views/user/index.ejs)
                     // esto es usado en conjunto con config/policies.js
                     if(req.session.Usuario.admin){
@@ -123,6 +129,31 @@ module.exports = {
                     console.log("Error al cambiar la propiedad logout a false");
                     return res.serverError(err);
                 }
+
+                /* People don't forget este es el error mas gonorrea en varios dias.
+                * El problema es q me deberia traer el id de usuario con "user.id"
+                * pero la mierda esta me devolvia un array algo como esto "[{id:1}]"
+                * cuando deberia ser algo como '{id:1}' entonces por eso me toca ingresar con user[0].id.
+                * Yo creo q esto sucede por que estoy usando el "user"
+                * que me devuelve la funcion del update y no el user del "findOne"
+                */
+                console.log('user');
+                console.log(user[0].id);
+                console.log('user');
+
+                try{
+                    // Informa a otros sockets (e.g. sockets conectados que estan subscritos) que este usuario esta logueado
+                    User.publishUpdate(user[0].id, {
+                        loggedIn: false,
+                        id: user[0].id
+                    });
+                }catch(err){
+                    console.log('err');
+                    console.log(err);
+                    console.log('err');
+                    return res.serverError(err);
+                }
+
 
                 // Termino la sesion (log out)
                 req.session.destroy();

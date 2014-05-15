@@ -21,6 +21,7 @@ module.exports.policies = {
 
     UserController: {
         'new' : 'flash',
+        'subscribe' : 'flash',
         'create': 'flash',
         'show': ['politicaPrueba','isAuthenticated', 'verifPermisosUsuario'], // Coloco de nuevo la politica de isAuthenticated por de lo contrario solo lanzaria la de politica prueba
         'edit': ['isAuthenticated' ,'verifPermisosUsuario'],

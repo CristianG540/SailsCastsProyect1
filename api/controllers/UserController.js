@@ -102,7 +102,7 @@ module.exports = {
             user.online = true;
             user.save(function(err, user){
                 if(err){
-                    console.log("Error al modificar el atributo online");
+                    console.log("Error al modificar el atributo online linea 105 UserController");
                     return res.serverError(err);
                 }
 
@@ -177,9 +177,12 @@ module.exports = {
             // Subscribo este socket a el user instance rooms
             User.subscribe(req.socket, users);
 
+
+            res.send(200);
+
         });
 
-    }
+    },
     /**
      * Overrides for the settings in `config/controllers.js`
      * (specific to UserController)

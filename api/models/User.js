@@ -52,7 +52,7 @@ module.exports = {
         }
 
     },
-    beforeUpdate:  function(values, next){
+    beforeValidation:  function(values, next){
         console.log('beforeValidation');
         console.log(values);
         console.log('beforeValidation');

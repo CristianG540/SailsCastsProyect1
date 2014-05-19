@@ -1,0 +1,25 @@
+<tr data-id="<%= usuario.id %>" data-model="user">
+    <% if (usuario.online) { %>
+    <td><span class="glyphicon glyphicon-ok-sign"></span></td>
+    <% } else { %>
+    <td><span class="glyphicon glyphicon-remove-sign"></span></td>
+    <% } %>
+    <td><%- usuario.id %></td>
+    <td><%- usuario.nombre %></td>
+    <td><%- usuario.titulo %></td>
+    <td><%- usuario.email %></td>
+    <% if (usuario.admin) { %>
+    <td><img src="/images/admin.png" alt="admin"></td>
+    <% } else { %>
+    <td><img src="/images/pawn.png" alt="user"></td>>
+    <% } %>
+    <td><a href="/user/show/<%- usuario.id %>" class="btn btn-small btn-primary">Mostrar</a></td>
+    <td><a href="/user/edit/<%- usuario.id %>" class="btn btn-small btn-warning">Editar</a></td>
+    <td>
+        <form action="/user/destroy/<%- usuario.id %>" method="POST">
+            <input value="delete" name="_method" id="_method" type="hidden" />
+            <input type="hidden" name="_csrf" value="<%= _csrf %>" />
+            <input type="submit" class="btn btn-sm btn-danger" value="Eliminar"/>
+        </form>
+    </td>
+</tr>

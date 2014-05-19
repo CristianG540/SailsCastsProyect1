@@ -9,8 +9,18 @@
  */
 
 module.exports.bootstrap = function (cb) {
+    // archivo bbootstrap
+    // It's very important to trigger this callack method when you are finished
+    // with the bootstrap!  (otherwise your server will never lift, since it's waiting on the bootstrap)
+    User.update({},{
+        online: false
+    },function(err, users){
+        if(err){
+            console.log("Hubo un error actualizando el esatdo online de los usuarios en el archivo bootstrap linea 19", err);
+        }else{
 
-  // It's very important to trigger this callack method when you are finished 
-  // with the bootstrap!  (otherwise your server will never lift, since it's waiting on the bootstrap)
-  cb();
+        }
+        cb();
+    });
+
 };

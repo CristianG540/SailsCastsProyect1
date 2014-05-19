@@ -12,7 +12,7 @@
 			<th></th>
 		</tr>
         <% _.each(usuarios, function(usuario){ %>
-		<tr>
+		<tr data-id="<%= usuario.id %>" data-model="user" >
             <%if(usuario.online){%>
             <td><span class="glyphicon glyphicon-ok-sign"></span></td>
 			<%}else{%>

@@ -110,6 +110,8 @@ module.exports = {
                 req.session.autenticado = true;
                 req.session.Usuario = user;
 
+                User.publishCreate(user);
+
                 //Despues de crear correctamente un usario
                 //redireciona a la accion "show" que es la qme muestra los detalles del usuario
                 //desde ep1-6 //res.json(user);
@@ -161,6 +163,7 @@ module.exports = {
             User.destroy(userId).done(function(err){
                 if(err){ return res.serverError(err); }
                 console.log("El usuario de id: "+userId+" Se elimino correctamente");
+                User.publishDestroy(user.id);
             });
             res.redirect('/user');
         });
@@ -169,6 +172,7 @@ module.exports = {
     'subscribe': function(req, res){
 
         User.find(function(err,users){
+
             if(err){ return res.serverError(err); }
 
             // Subscribo este socket a el User model classroom

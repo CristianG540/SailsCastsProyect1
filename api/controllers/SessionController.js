@@ -153,8 +153,6 @@ module.exports = {
                     console.log('err');
                     return res.serverError(err);
                 }
-
-
                 // Termino la sesion (log out)
                 req.session.destroy();
 
@@ -163,8 +161,6 @@ module.exports = {
             });
 
         });
-
-
     },
     /**
      * Overrides for the settings in `config/controllers.js`

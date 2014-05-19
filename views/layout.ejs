@@ -32,6 +32,11 @@
     <link rel="stylesheet" href="/linker/styles/bootstrap.css">
     <link rel="stylesheet" href="/linker/styles/custom.css">
     <!--STYLES END-->
+
+    <!--Agrego esto entonces el cliente tiene aceso a la variable csrf y esta  queda de primera en cada pagina -->
+    <script type="text/javascript">
+      window.overlord = { csrf: "<%= _csrf %>" };
+    </script>
   </head>
 
   <body>
@@ -111,7 +116,7 @@
     -->
 
     <!--TEMPLATES-->
-    
+    <script type="text/javascript" src="/jst.js"></script>
     <!--TEMPLATES END-->
 
 
